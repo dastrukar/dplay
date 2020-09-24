@@ -1,5 +1,5 @@
 import os
-srcprt = "./"
+cmd = ""
 
 # -Functions-
 
@@ -8,7 +8,7 @@ def gamecommand():
     # load some text files and start some variables
     load = open("dplay.cfg", "r").readlines()
     files = []
-    cmd = ""
+    global cmd
 
     files = getSentences(load)
 
@@ -24,14 +24,16 @@ def gamecommand():
 # what source port do you want to use???
 def getSentences(lst):
     temp = []
+    global cmd
     
     for i in lst:
+        sentence = i
         # ignore the sentence if it has a '#' at the start of it
         # else append it to the list
         if len(sentence) > 0:
             # define source port
-            if sentence[0] == "+" and srcprt == "./":
-                srcprt += sentence[1:-1]
+            if sentence[0] == "+" and cmd == "":
+                cmd += sentence[1:-1]
             elif sentence[0] != "#":
                 temp.append(sentence[-1])
     

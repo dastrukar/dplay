@@ -16,9 +16,6 @@ def gamecommand():
     for i in files:
         cmd += " "
         cmd += i
-    
-    # return the command for use
-    return cmd
 
 
 # what source port do you want to use???
@@ -34,12 +31,13 @@ def getSentences(lst):
             # define source port
             if sentence[0] == "+" and cmd == "":
                 cmd += sentence[1:-1]
-            elif sentence[0] != "#":
-                temp.append(sentence[-1])
+            elif sentence[0] != "#" and sentence[0] != "\n":
+                temp.append(sentence[:-1])
     
     return temp
 
 
 
 # -Main-
-os.system(gamecommand())
+gamecommand()
+os.system(cmd)

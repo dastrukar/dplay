@@ -1,43 +1,34 @@
 import os
-cmd = ""
 
 # -Functions-
-
-# forms a command to execute with
-def gamecommand():
-    # load some text files and start some variables
-    load = open("dplay.cfg", "r").readlines()
-    files = []
-    global cmd
-
-    files = getSentences(load)
-
-    # form a command to execute
-    for i in files:
-        cmd += " "
-        cmd += i
-
-
-# what source port do you want to use???
-def getSentences(lst):
-    temp = []
-    global cmd
-    
+# get the source port
+def getSource(lst):
     for i in lst:
-        sentence = i
-        # ignore the sentence if it has a '#' at the start of it
-        # else append it to the list
-        if len(sentence) > 0:
+        if len(i) > 0:
             # define source port
-            if sentence[0] == "+" and cmd == "":
-                cmd += sentence[1:-1]
-            elif sentence[0] != "#" and sentence[0] != "\n":
-                temp.append(sentence[:-1])
-    
-    return temp
+            if i[0:7] == 'SRCPRT=':
+                print("Source Port: " + i[7:-1])
+                return i[7:-1]
+    return ''
+
+
+def getSentences(lst):
+    # ignore the sentence if it has a '#' at the start of it or is a '\n'
+    # else append it to the list
+    return [ i[:-1] for i in lst if i[0] != '#' and i[0] != '\n' and i[0:7] != 'SRCPRT=']
 
 
 
 # -Main-
-gamecommand()
+# load some text files and start some variables
+load = open('dplay.cfg', 'r').readlines()
+cmd = getSource(load)
+files = getSentences(load)
+
+# form a command to execute
+for i in files:
+    cmd += ' '
+    cmd += i
+
+# execute command
 os.system(cmd)

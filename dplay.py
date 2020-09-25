@@ -1,4 +1,5 @@
 import os
+import createfile
 
 # -Functions-
 # get the source port
@@ -21,7 +22,7 @@ def getSentences(lst):
 
 # -Main-
 # load some text files and start some variables
-load = open('dplay.cfg', 'r').readlines()
+load = createfile.checkConf()
 cmd = getSource(load)
 files = getSentences(load)
 

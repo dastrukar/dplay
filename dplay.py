@@ -16,7 +16,14 @@ def getSource(lst):
 def getSentences(lst):
     # ignore the sentence if it has a '#' at the start of it or is a '\n'
     # else append it to the list
-    return [ i[:-1] for i in lst if i[0] != '#' and i[0] != '\n' and i[0:7] != 'SRCPRT=']
+    lst = [ i for i in lst if i[0] != '#' and i[0] != '\n' and i[0:7] != 'SRCPRT=' ]
+    
+    # get rid of the \n
+    for i in lst:
+        if i[-1] == '\n':
+            lst[lst.index(i)] = i[:-1]
+    
+    return lst
 
 
 
@@ -30,6 +37,6 @@ files = getSentences(load)
 for i in files:
     cmd += ' '
     cmd += i
-
+print(cmd)
 # execute command
 os.system(cmd)

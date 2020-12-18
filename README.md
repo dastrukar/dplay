@@ -1,4 +1,4 @@
-# dplay
+![dplay](dplay.jpg)
 dPlay is a very simple Doom launcher thing that I made for fun.
 
 ## How does dPlay work?

@@ -1,6 +1,6 @@
 ![dplay](dplay.jpg)
 
-dPlay(doomPlay) is a very simple Doom launcher thing that I made for fun.
+dPlay(doomPlayer) is a very simple Doom launcher thing that I made for fun.
 
 ## How does dPlay work?
 dPlay uses a config file, which you can modify to add launch option/parameters.
